@@ -1,9 +1,12 @@
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Button from "@mui/material/Button";
+import "./cartWidget.css";
+
 export const CartWidget = () => {
   return (
-    <div>
-      <ShoppingCartIcon />
+    <Button className="cart-button">
+      <ShoppingCartIcon sx={{ fontSize: 30, color: "var(--color4)" }} />
       <span>0</span>
-    </div>
+    </Button>
   );
 };

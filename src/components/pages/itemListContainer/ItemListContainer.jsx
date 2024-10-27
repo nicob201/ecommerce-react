@@ -1,17 +1,23 @@
-import { Box, Typography } from "@mui/material";
+import { useState, useEffect } from "react";
+import { products } from "../../../products";
+import ItemList from "./ItemList";
+import { useParams } from "react-router-dom";
 
-export const ItemListContainer = ({ greeting }) => {
-  return (
-    <Box
-      sx={{
-        padding: "20px",
-        backgroundColor: "#f5f5f5",
-        borderRadius: "8px",
-        textAlign: "center",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-      }}
-    >
-      <Typography variant="h4">{greeting}</Typography>
-    </Box>
-  );
+const ItemListContainer = () => {
+  const [items, setItems] = useState([]);
+  const { name } = useParams();
+
+  useEffect(() => {
+    const filteredItems = name
+      ? products.filter((product) => product.category === name)
+      : products;
+    const getProducts = new Promise((resolve) => {
+      resolve(name ? filteredItems : products);
+    });
+    getProducts.then((res) => setItems(res));
+  }, [name]);
+
+  return <ItemList items={items} />;
 };
+
+export default ItemListContainer;

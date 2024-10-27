@@ -1,13 +1,36 @@
-.container-navbar {
-    background-color: dimgrey;
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 10%;
+    background-color: var(--color3);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 100;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: black;
+.navbar a {
+    position: relative;
+    font-size: 18px;
+    color: var(--color2);
+    font-weight: 500;
+    margin-left: 40px;
     text-transform: uppercase;
-    padding: 15px;
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color2);
+    transition: .3s;
+}
+
+.navbar a:hover:before {
+    width: 100%;
 }
