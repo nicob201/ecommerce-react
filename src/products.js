@@ -1,6 +1,5 @@
 export let products = [
     {
-        id: "1",
         title: "Acer Predator Helios 300",
         price: 1500,
         stock: 10,
@@ -9,7 +8,6 @@ export let products = [
         category: "notebooks",
     },
     {
-        id: "2",
         title: "Apple Mac Mini M1",
         price: 699,
         stock: 8,
@@ -18,7 +16,6 @@ export let products = [
         category: "notebooks",
     },
     {
-        id: "3",
         title: "Dell XPS 13",
         price: 1200,
         stock: 4,
@@ -27,7 +24,6 @@ export let products = [
         category: "notebooks",
     },
     {
-        id: "4",
         title: "iPhone 11",
         price: 599,
         stock: 9,
@@ -36,7 +32,6 @@ export let products = [
         category: "phones",
     },
     {
-        id: "5",
         title: "iPhone 12",
         price: 799,
         stock: 12,
@@ -45,7 +40,6 @@ export let products = [
         category: "phones",
     },
     {
-        id: "6",
         title: "iPhone 13",
         price: 999,
         stock: 7,
@@ -54,7 +48,6 @@ export let products = [
         category: "phones",
     },
     {
-        id: "7",
         title: "LG OLED CX 65'",
         price: 2200,
         stock: 5,
@@ -63,7 +56,6 @@ export let products = [
         category: "tv",
     },
     {
-        id: "8",
         title: "Corsair K95 RGB Platinum",
         price: 199,
         stock: 7,
@@ -72,7 +64,6 @@ export let products = [
         category: "keyboards",
     },
     {
-        id: "9",
         title: "Razer BlackWidow Elite",
         price: 170,
         stock: 10,
@@ -81,7 +72,6 @@ export let products = [
         category: "keyboards",
     },
     {
-        id: "10",
         title: "Asus ROG Zephyrus G14",
         price: 1800,
         stock: 5,

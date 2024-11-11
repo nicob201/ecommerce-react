@@ -25,7 +25,6 @@ export default function ProductCards({ products }) {
               sx={{
                 marginTop: "10px",
                 fontSize: 22,
-                fontFamily: "Montserrat",
                 fontWeight: 700,
                 letterSpacing: 1,
                 color: "var(--color3)",
@@ -40,23 +39,10 @@ export default function ProductCards({ products }) {
               sx={{
                 marginTop: "10px",
                 fontSize: 20,
-                fontFamily: "Montserrat",
                 color: "var(--color3)",
               }}
             >
               ${product.price}
-            </Typography>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                marginTop: "10px",
-                fontSize: 16,
-                fontFamily: "Montserrat",
-                color: "var(--color3)",
-              }}
-            >
-              Stock: {product.stock}
             </Typography>
           </CardContent>
           <CardActions className="product-card-actions">

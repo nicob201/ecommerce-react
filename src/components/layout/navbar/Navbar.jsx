@@ -21,7 +21,6 @@ const Navbar = () => {
       <Typography
         variant="h5"
         className="navbar"
-        sx={{ fontFamily: "Montserrat" }}
       >
         <Link to="/">Home</Link>
         <Link to="/category/notebooks">Notebooks</Link>

@@ -2,14 +2,14 @@ import { Box, Button } from "@mui/material";
 import { useState } from "react";
 
 const Counter = ({ stock, addToCart }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const sum = () => {
     stock > count ? setCount(count + 1) : null;
   };
 
   const res = () => {
-    count > 0 ? setCount(count - 1) : null;
+    count > 1 ? setCount(count - 1) : null;
   };
 
   return (
@@ -18,7 +18,6 @@ const Counter = ({ stock, addToCart }) => {
         -
       </Button>
       <Button>{count}</Button>
-      {/* <span>{count}</span> */}
       <Button variant="outlined" size="small" onClick={sum}>
         +
       </Button>
