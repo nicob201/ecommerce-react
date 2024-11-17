@@ -15,7 +15,8 @@ const ItemListContainer = () => {
 
   // Paginado
   const itemsPerPage = 6;
-  const { currentItems, currentPage, totalPages, handlePageChange } = usePagination(filteredItems, itemsPerPage);
+  const { currentItems, currentPage, totalPages, handlePageChange } =
+    usePagination(filteredItems, itemsPerPage);
 
   // Return temprano para mostrar skeletons
   if (products.length === 0) {
@@ -51,9 +52,7 @@ const ItemListContainer = () => {
   }
 
   return (
-    <Box
-      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <Box>
       {name ? (
         <ItemList items={filteredItems} />
       ) : (
@@ -64,7 +63,7 @@ const ItemListContainer = () => {
             page={currentPage}
             onChange={handlePageChange}
             color="primary"
-            sx={{ marginTop: 4, marginBottom: 4 }}
+            sx={{ marginTop: 4, marginBottom: 4, justifyItems: "center" }}
           />
         </>
       )}
