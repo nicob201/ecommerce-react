@@ -38,6 +38,7 @@ Puedes visitar la aplicación en el siguiente enlace:
 5. **Checkout:** Formulario para completar la compra y generar una orden con un ID único.
 6. **Gestión del Stock:** Actualización automática del stock en la base de datos después de una compra.
 7. **Página de Error 404:** Redirección en caso de rutas no existentes.
+8. **Productos Sin Stock:** Hay un producto sin stock disponible en cada categoria para ver que no se puede agregar al carrito.
 
 ---
 
