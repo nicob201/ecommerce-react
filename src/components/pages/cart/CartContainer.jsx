@@ -11,6 +11,7 @@ import {
   ListItemText,
   CardMedia,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const CartContainer = () => {
   const { data } = useContext(CartContext);
@@ -38,6 +39,10 @@ const CartContainer = () => {
                   secondary={`Units: ${item.quantity} - Subtotal: $${
                     item.price * item.quantity
                   }`}
+                />
+                <DeleteIcon
+                  onClick={() => data.removeItem(item.id)}
+                  style={{ margin: "0 200px", cursor: "pointer" }}
                 />
               </ListItem>
             ))}

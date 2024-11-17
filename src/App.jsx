@@ -9,6 +9,7 @@ import { Footer } from "./components/layout/footer/Footer";
 import { CartContextProvider } from "./context/cartContext";
 import { ProductContextProvider } from "./context/ProductContext";
 import { Toaster } from "sonner";
+import NotFound from "./components/pages/notFound/NotFound";
 
 const theme = createTheme({
   typography: {
@@ -30,7 +31,7 @@ function App() {
               <Route path="/cart" element={<CartContainer />} />
               <Route path="/itemDetail/:id" element={<ItemDetailContainer />} />
               <Route path="/checkout" element={<Checkout />} />
-              <Route path="*" element={<h2>404 not found</h2>} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
           </BrowserRouter>

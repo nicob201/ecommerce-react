@@ -13,9 +13,13 @@ export function Footer() {
         pt: 6,
       }}
     >
-      <Container maxWidth="lg" sx={{ mb: 4 }}>
+      <Container maxWidth="lg" sx={{ mb: 4, padding: "80px 0px" }}>
         <Grid2
-          sx={{ display: "flex", alignItems: "center" }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+          }}
           container
           spacing={4}
         >

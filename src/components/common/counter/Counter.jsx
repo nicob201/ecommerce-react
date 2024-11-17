@@ -14,11 +14,21 @@ const Counter = ({ stock, addToCart }) => {
 
   return (
     <Box>
-      <Button variant="outlined" size="small" onClick={res}>
+      <Button
+        variant="outlined"
+        size="small"
+        onClick={res}
+        disabled={stock === 0}
+      >
         -
       </Button>
-      <Button>{count}</Button>
-      <Button variant="outlined" size="small" onClick={sum}>
+      <Button disabled={stock === 0}>{count}</Button>
+      <Button
+        variant="outlined"
+        size="small"
+        onClick={sum}
+        disabled={stock === 0}
+      >
         +
       </Button>
       <Box sx={{ mt: 2 }}>
@@ -26,6 +36,7 @@ const Counter = ({ stock, addToCart }) => {
           variant="contained"
           size="medium"
           onClick={() => addToCart(count)}
+          disabled={stock === 0}
         >
           Add To Cart
         </Button>
