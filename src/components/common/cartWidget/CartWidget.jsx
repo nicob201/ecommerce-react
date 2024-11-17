@@ -3,7 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
-import "./CartWidget.css";
+import "./cartWidget.css";
 
 export const CartWidget = () => {
   const { data } = useContext(CartContext);
