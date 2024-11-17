@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import ItemDetail from "./itemDetail";
+import ItemDetail from "./ItemDetail";
 import { CartContext } from "../../../context/CartContext";
 import { ProductContext } from "../../../context/ProductContext";
 import { toast } from "sonner";
