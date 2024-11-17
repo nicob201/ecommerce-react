@@ -6,7 +6,7 @@ import CartContainer from "./components/pages/cart/CartContainer";
 import Checkout from "./components/pages/checkout/Checkout";
 import ItemDetailContainer from "./components/pages/itemDetail/ItemDetailContainer";
 import { Footer } from "./components/layout/footer/Footer";
-import { CartContextProvider } from "./context/cartContext";
+import { CartContextProvider } from "./context/CartContext";
 import { ProductContextProvider } from "./context/ProductContext";
 import { Toaster } from "sonner";
 import NotFound from "./components/pages/notFound/NotFound";

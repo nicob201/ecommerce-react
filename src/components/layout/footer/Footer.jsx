@@ -1,62 +1,49 @@
 import { Box, Container, Typography, Link, Grid2 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import "./footer.css";
 
 export function Footer() {
   return (
-    <Box
-      component="footer"
-      sx={{
-        backgroundColor: "var(--color3)",
-        color: "#fff",
-        mt: "auto",
-        pt: 6,
-      }}
-    >
-      <Container maxWidth="lg" sx={{ mb: 4, padding: "80px 0px" }}>
-        <Grid2
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-          }}
-          container
-          spacing={4}
-        >
+    <Box component="footer" className="footer">
+      <Container maxWidth="lg" className="footer-container">
+        <Grid2 container spacing={4} className="footer-grid">
           <Grid2 xs={12} md={4}>
-            <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+            <Box className="footer-logo-container">
               <a href="/">
                 <img
                   src="https://res.cloudinary.com/dl73hi4ir/image/upload/v1728238526/logo_zu4yrw.webp"
                   alt="Logo"
-                  style={{ height: "50px", marginRight: "8px" }}
-                  href="#"
+                  className="footer-logo"
                 />
               </a>
               <Typography variant="h6">Tecno-Store</Typography>
             </Box>
-            <Typography variant="body2">
+            <Typography variant="body2" className="footer-description">
               Online store where you can find all the products you need.
             </Typography>
           </Grid2>
-          {/* Informacion de contacto de la tienda */}
+
           <Grid2 xs={12} md={4}>
             <Typography variant="h6" gutterBottom>
               Contact
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" className="footer-contact">
               Email: contacto@tecnostore.com
             </Typography>
-            <Typography variant="body2">Phone: +54 123 456 789</Typography>
-            <Typography variant="body2">
-              Adress: Av. Siempreviva 123, Springfield
+            <Typography variant="body2" className="footer-contact">
+              Phone: +54 123 456 789
+            </Typography>
+            <Typography variant="body2" className="footer-contact">
+              Address: Av. Siempreviva 123, Springfield
             </Typography>
           </Grid2>
+
           <Grid2 xs={12} md={4}>
             <Typography variant="h6" gutterBottom>
               Links
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" className="footer-links">
               <Link href="#" color="inherit" underline="hover">
                 About Us
               </Link>
@@ -73,26 +60,20 @@ export function Footer() {
         </Grid2>
       </Container>
 
-      {/* Seccion del desarrollador en el footer */}
-      <Box sx={{ backgroundColor: "#222", py: 3, px: 2 }}>
+      <Box className="footer-developer">
         <Container maxWidth="lg">
           <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexDirection: { xs: "column", md: "row" },
-            }}
+            className={`footer-developer-container ${
+              window.innerWidth >= 960 ? "footer-developer-container-md" : ""
+            }`}
           >
             <Typography variant="body1">
               © 2024 | Developed by Nicolas Boscasso
             </Typography>
             <Box
-              sx={{
-                display: "flex",
-                gap: 2,
-                mt: { xs: 2, md: 0 },
-              }}
+              className={`footer-icons ${
+                window.innerWidth >= 960 ? "footer-icons-md" : ""
+              }`}
             >
               <Link
                 href="https://github.com/nicob201"

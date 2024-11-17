@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext } from "../../../context/cartContext";
+import { CartContext } from "../../../context/CartContext";
 import { Link } from "react-router-dom";
 import {
   Box,
@@ -12,48 +12,48 @@ import {
   CardMedia,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import "./cart.css";
 
 const CartContainer = () => {
   const { data } = useContext(CartContext);
   const { cart, clearCart, getTotalPrice } = data;
 
   return (
-    <Box sx={{ p: 4, mt: 10, height: "100%", minHeight: "100vh" }}>
-      <Typography variant="h4" align="center" gutterBottom>
+    <Box className="cart-container">
+      <Typography variant="h4" className="cart-title" gutterBottom>
         Cart detail:
       </Typography>
 
       {cart.length > 0 ? (
         <Box>
-          <List sx={{ paddingLeft: "20%" }}>
+          <List className="cart-list">
             {cart.map((item) => (
-              <ListItem key={item.id} sx={{ py: 2 }}>
+              <ListItem key={item.id} className="cart-item">
                 <CardMedia
                   component="img"
                   alt={item.title}
                   image={item.imageUrl}
-                  style={{ height: "100px", width: "100px", margin: "0 30px" }}
+                  className="cart-item-img"
                 />
                 <ListItemText
                   primary={item.title}
                   secondary={`Units: ${item.quantity} - Subtotal: $${
                     item.price * item.quantity
                   }`}
+                  className="cart-item-text"
                 />
                 <DeleteIcon
                   onClick={() => data.removeItem(item.id)}
-                  style={{ margin: "0 200px", cursor: "pointer" }}
+                  className="cart-item-delete"
                 />
               </ListItem>
             ))}
           </List>
           <Divider sx={{ my: 2 }} />
-          <Typography variant="h5" align="center">
+          <Typography variant="h5" className="cart-total">
             Total: ${getTotalPrice()}
           </Typography>
-          <Box
-            sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 3 }}
-          >
+          <Box className="cart-buttons">
             <Button variant="contained" color="primary" onClick={clearCart}>
               Clear cart
             </Button>
@@ -73,7 +73,7 @@ const CartContainer = () => {
         </Typography>
       )}
 
-      <Box sx={{ textAlign: "center", mt: 4 }}>
+      <Box className="cart-back-button">
         <Button variant="contained" color="primary" component={Link} to="/">
           Back to store
         </Button>

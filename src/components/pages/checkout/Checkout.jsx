@@ -1,7 +1,14 @@
 import { doc, collection, updateDoc, addDoc } from "firebase/firestore";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Stack,
+  TextField,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import { useContext, useState } from "react";
-import { CartContext } from "../../../context/cartContext";
+import { CartContext } from "../../../context/CartContext";
 import { db } from "../../../firebaseConfig";
 
 const Checkout = () => {
@@ -14,10 +21,13 @@ const Checkout = () => {
     email: "",
     phone: "",
   });
+  const [loading, setLoading] = useState(false);
 
   // Form
-  const formHandler = (event) => {
+  const formHandler = async (event) => {
     event.preventDefault();
+    setLoading(true);
+
     const total = getTotalQuantity();
     const order = {
       buyer: userInfo,
@@ -25,18 +35,26 @@ const Checkout = () => {
       total,
     };
 
-    // Funcion para crear una orden en la BD
-    let createOrder = collection(db, "orders");
-    addDoc(createOrder, order).then((res) => setOrderId(res.id));
-    clearCart();
+    try {
+      // Crear una orden en la BD
+      let createOrder = collection(db, "orders");
+      const res = await addDoc(createOrder, order);
+      setOrderId(res.id);
 
-    // Funcion para actualizar la cantidad de unidades en la BD
-    let updateProductUnits = collection(db, "products");
-    order.items.forEach((item) => {
-      const productId = item.id;
-      const productRef = doc(updateProductUnits, productId);
-      updateDoc(productRef, { stock: item.stock - item.quantity });
-    });
+      // Actualizar la cantidad de unidades en la BD
+      let updateProductUnits = collection(db, "products");
+      for (let item of order.items) {
+        const productId = item.id;
+        const productRef = doc(updateProductUnits, productId);
+        await updateDoc(productRef, { stock: item.stock - item.quantity });
+      }
+
+      clearCart(); // Limpiar el carrito despues de la orden
+    } catch (error) {
+      console.error("Error creating order:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const infoFormUser = (evento) => {
@@ -106,8 +124,15 @@ const Checkout = () => {
             fullWidth
             onChange={infoFormUser}
           />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Send
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            disabled={loading}
+            startIcon={loading && <CircularProgress size={20} />}
+          >
+            {loading ? "Loading..." : "Send"}
           </Button>
         </Stack>
       </form>

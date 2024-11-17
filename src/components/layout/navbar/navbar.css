@@ -34,3 +34,8 @@
 .navbar a:hover:before {
     width: 100%;
 }
+
+.navbar-logo {
+    margin: 10px;
+    width: 50px;
+}

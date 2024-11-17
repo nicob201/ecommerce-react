@@ -1,3 +1,11 @@
-span {
+.cart-icon {
+    font-size: 30px;
     color: var(--color4);
+}
+
+.badge {
+    right: -3px;
+    top: 13px;
+    border: 2px solid var(--color-background-paper);
+    padding: 0 4px;
 }

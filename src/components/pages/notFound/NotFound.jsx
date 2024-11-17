@@ -1,15 +1,10 @@
 import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import "./notFound.css";
 
 const NotFound = () => {
   return (
-    <Box
-      sx={{
-        textAlign: "center",
-        mt: 15,
-        p: 10,
-      }}
-    >
+    <Box className="not-found-container">
       <Typography variant="h2" gutterBottom>
         404
       </Typography>
@@ -24,7 +19,7 @@ const NotFound = () => {
         to="/"
         variant="contained"
         color="primary"
-        sx={{ mt: 3 }}
+        className="not-found-button"
       >
         Go Back Home
       </Button>
