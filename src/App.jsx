@@ -1,15 +1,11 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/navbar/Navbar";
-import ItemListContainer from "./components/pages/itemListContainer/ItemListContainer";
-import CartContainer from "./components/pages/cart/CartContainer";
-import Checkout from "./components/pages/checkout/Checkout";
-import ItemDetailContainer from "./components/pages/itemDetail/ItemDetailContainer";
 import { Footer } from "./components/layout/footer/Footer";
 import { CartContextProvider } from "./context/CartContext";
 import { ProductContextProvider } from "./context/ProductContext";
 import { Toaster } from "sonner";
-import NotFound from "./components/pages/notFound/NotFound";
+import { appRoutes } from "./routes/routes";
 
 const theme = createTheme({
   typography: {
@@ -26,12 +22,9 @@ function App() {
           <BrowserRouter>
             <Navbar />
             <Routes>
-              <Route path="/" element={<ItemListContainer />} />
-              <Route path="/category/:name" element={<ItemListContainer />} />
-              <Route path="/cart" element={<CartContainer />} />
-              <Route path="/itemDetail/:id" element={<ItemDetailContainer />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="*" element={<NotFound />} />
+              {appRoutes.map(({ id, path, Element }) => (
+                <Route key={id} path={path} element={<Element />} />
+              ))}
             </Routes>
             <Footer />
           </BrowserRouter>
