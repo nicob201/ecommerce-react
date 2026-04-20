@@ -1,4 +1,3 @@
-import { Box, Button } from "@mui/material";
 import { useState } from "react";
 
 const Counter = ({ stock, addToCart }) => {
@@ -13,36 +12,30 @@ const Counter = ({ stock, addToCart }) => {
   };
 
   return (
-    <Box>
-      <Button
-        variant="outlined"
-        size="small"
+    <div className="counter-container">
+      <button
+        className="counter-button"
         onClick={res}
-        disabled={stock === 0}
+        disabled={stock === 0 || count <= 1}
       >
         -
-      </Button>
-      <Button disabled={stock === 0}>{count}</Button>
-      <Button
-        variant="outlined"
-        size="small"
+      </button>
+      <span className="counter-value">{count}</span>
+      <button
+        className="counter-button"
         onClick={sum}
-        disabled={stock === 0}
+        disabled={stock === 0 || count >= stock}
       >
         +
-      </Button>
-      <Box sx={{ mt: 2 }}>
-        <Button
-          variant="contained"
-          size="medium"
-          onClick={() => addToCart(count)}
-          disabled={stock === 0}
-        >
-          Add To Cart
-        </Button>
-        <button></button>
-      </Box>
-    </Box>
+      </button>
+      <button
+        className="add-to-cart-button"
+        onClick={() => addToCart(count)}
+        disabled={stock === 0}
+      >
+        Add To Cart
+      </button>
+    </div>
   );
 };
 

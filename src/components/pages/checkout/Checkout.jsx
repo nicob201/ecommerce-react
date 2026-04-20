@@ -1,12 +1,4 @@
 import { doc, collection, updateDoc, addDoc } from "firebase/firestore";
-import {
-  Box,
-  Button,
-  Stack,
-  TextField,
-  Typography,
-  CircularProgress,
-} from "@mui/material";
 import { useContext, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { db } from "../../../firebaseConfig";
@@ -23,7 +15,6 @@ const Checkout = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  // Form
   const formHandler = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -36,12 +27,10 @@ const Checkout = () => {
     };
 
     try {
-      // Crear una orden en la BD
       let createOrder = collection(db, "orders");
       const res = await addDoc(createOrder, order);
       setOrderId(res.id);
 
-      // Actualizar la cantidad de unidades en la BD
       let updateProductUnits = collection(db, "products");
       for (let item of order.items) {
         const productId = item.id;
@@ -49,7 +38,7 @@ const Checkout = () => {
         await updateDoc(productRef, { stock: item.stock - item.quantity });
       }
 
-      clearCart(); // Limpiar el carrito despues de la orden
+      clearCart();
     } catch (error) {
       console.error("Error creating order:", error);
     } finally {
@@ -57,86 +46,62 @@ const Checkout = () => {
     }
   };
 
-  const infoFormUser = (evento) => {
-    const { name, value } = evento.target;
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
 
   if (orderId) {
     return (
-      <Box
-        sx={{
-          maxWidth: 600,
-          margin: "auto",
-          mt: 12,
-          height: "100%",
-          minHeight: "100vh",
-          p: 4,
-        }}
-      >
-        <Typography variant="h5" align="center" sx={{ marginBottom: 4 }}>
-          Thank you for your purchase! Your order number is: {orderId}
-        </Typography>
-      </Box>
+      <div className="checkout-container">
+        <div className="checkout-success">
+          <h2 className="checkout-success-title">Thank you for your purchase!</h2>
+          <p>Your order number is: {orderId}</p>
+        </div>
+      </div>
     );
   }
 
   return (
-    <Box
-      sx={{
-        maxWidth: 600,
-        margin: "auto",
-        mt: 12,
-        height: "100%",
-        minHeight: "100vh",
-        p: 4,
-      }}
-    >
-      <Typography variant="h5" align="center" sx={{ marginBottom: 4 }}>
-        Complete this form to purchase order:
-      </Typography>
-      <form onSubmit={formHandler}>
-        <Stack spacing={2}>
-          <TextField
-            label="Name"
-            name="name"
-            placeholder="Leo Messi"
-            variant="outlined"
-            color="primary"
-            fullWidth
-            onChange={infoFormUser}
-          />
-          <TextField
-            label="Phone Number"
-            name="phone"
-            placeholder="351123123"
-            variant="outlined"
-            color="primary"
-            fullWidth
-            onChange={infoFormUser}
-          />
-          <TextField
-            label="Email"
-            name="email"
-            placeholder="example@gmail.com"
-            variant="outlined"
-            color="primary"
-            fullWidth
-            onChange={infoFormUser}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={loading}
-            startIcon={loading && <CircularProgress size={20} />}
-          >
-            {loading ? "Loading..." : "Send"}
-          </Button>
-        </Stack>
+    <div className="checkout-container">
+      <h2 className="checkout-title">Complete your purchase</h2>
+      <form onSubmit={formHandler} className="checkout-form">
+        <input
+          type="text"
+          name="name"
+          placeholder="Your name"
+          value={userInfo.name}
+          onChange={handleInputChange}
+          className="checkout-input"
+          required
+        />
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone number"
+          value={userInfo.phone}
+          onChange={handleInputChange}
+          className="checkout-input"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email address"
+          value={userInfo.email}
+          onChange={handleInputChange}
+          className="checkout-input"
+          required
+        />
+        <button
+          type="submit"
+          className="checkout-button"
+          disabled={loading}
+        >
+          {loading ? "Processing..." : "Place Order"}
+        </button>
       </form>
-    </Box>
+    </div>
   );
 };
 

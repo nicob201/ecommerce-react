@@ -7,19 +7,17 @@ import "../../common/cardProduct/card.css";
 import usePagination from "../../../hooks/usePaginate";
 
 const ItemListContainer = () => {
-  const { products } = useContext(ProductContext);
+  const { products, loading } = useContext(ProductContext);
   const { name } = useParams();
   const filteredItems = name
     ? products.filter((product) => product.category === name)
     : products;
 
-  // Paginado
   const itemsPerPage = 6;
   const { currentItems, currentPage, totalPages, handlePageChange } =
     usePagination(filteredItems, itemsPerPage);
 
-  // Return temprano para mostrar skeletons
-  if (products.length === 0) {
+  if (loading) {
     return (
       <div className="product-cards-container">
         {Array.from({ length: 6 }).map((_, index) => (

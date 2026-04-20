@@ -1,5 +1,3 @@
-import Badge from "@mui/material/Badge";
-import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
@@ -10,15 +8,11 @@ export const CartWidget = () => {
   const totalQuantity = data.getTotalQuantity();
 
   return (
-    <IconButton aria-label="cart">
-      <Badge
-        badgeContent={totalQuantity}
-        color="info"
-        showZero
-        classes={{ badge: "badge" }}
-      >
-        <ShoppingCartIcon className="cart-icon" />
-      </Badge>
-    </IconButton>
+    <div className="cart-widget">
+      <ShoppingCartIcon className="cart-icon" />
+      {totalQuantity > 0 && (
+        <span className="cart-badge">{totalQuantity}</span>
+      )}
+    </div>
   );
 };

@@ -1,35 +1,25 @@
-import { Typography, Box, CardContent, CardMedia } from "@mui/material";
 import Counter from "../../common/counter/Counter";
 
 const ItemDetail = ({ item, addToCart }) => {
   return item && item.id ? (
-    <Box sx={{ minHeight: "100vh", maxWidth: 600, margin: "auto", mt: 12 }}>
-      <CardMedia
-        component="img"
-        image={item.imageUrl}
+    <div className="item-detail-container">
+      <img
+        src={item.imageUrl}
         alt={item.title}
-        sx={{ height: 300, objectFit: "contain" }}
+        className="item-detail-image"
       />
-      <CardContent>
-        <Typography variant="h4" gutterBottom>
-          {item.title}
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-          {item.description}
-        </Typography>
-        <Typography variant="h6" sx={{ marginY: 1 }}>
-          Price: ${item.price}
-        </Typography>
-        <Typography variant="body2" sx={{ marginBottom: 2 }}>
-          Stock: {item.stock}
-        </Typography>
+      <div className="item-detail-info">
+        <h1 className="item-detail-title">{item.title}</h1>
+        <p className="item-detail-description">{item.description}</p>
+        <p className="item-detail-price">${item.price}</p>
+        <p className="item-detail-stock">Stock: {item.stock} units available</p>
         <Counter stock={item.stock} addToCart={addToCart} />
-      </CardContent>
-    </Box>
+      </div>
+    </div>
   ) : (
-    <Typography variant="h5" align="center" sx={{ marginTop: 4 }}>
-      Producto no encontrado
-    </Typography>
+    <div className="checkout-success">
+      <h2 className="checkout-success-title">Product not found</h2>
+    </div>
   );
 };
 

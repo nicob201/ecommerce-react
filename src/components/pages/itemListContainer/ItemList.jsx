@@ -3,16 +3,8 @@ import ProductCards from "../../common/cardProduct/Card";
 
 const ItemList = ({ greeting, items }) => {
   return (
-    <Box
-      sx={{
-        padding: "20px",
-        backgroundColor: "var(--color2)",
-        textAlign: "center",
-        height: "100%",
-        minHeight: "100vh",
-      }}
-    >
-      <Typography variant="h4">{greeting}</Typography>
+    <Box className="item-list-container">
+      <Typography variant="h4" className="item-list-greeting">{greeting}</Typography>
       <ProductCards products={items} />
     </Box>
   );
