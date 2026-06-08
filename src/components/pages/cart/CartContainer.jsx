@@ -24,9 +24,26 @@ const CartContainer = () => {
                 />
                 <div className="cart-item-details">
                   <h3 className="cart-item-title">{item.title}</h3>
-                  <p className="cart-item-info">
-                    Units: {item.quantity} — Subtotal: ${item.price * item.quantity}
-                  </p>
+                  <p className="cart-item-price">${item.price}</p>
+                  <div className="cart-item-controls">
+                    <button
+                      className="cart-qty-btn"
+                      onClick={() => data.decreaseQuantity(item.id)}
+                      disabled={item.quantity <= 1}
+                    >
+                      −
+                    </button>
+                    <span className="cart-qty-value">{item.quantity}</span>
+                    <button
+                      className="cart-qty-btn"
+                      onClick={() => data.increaseQuantity(item.id)}
+                    >
+                      +
+                    </button>
+                    <span className="cart-item-subtotal">
+                      Subtotal: ${item.price * item.quantity}
+                    </span>
+                  </div>
                 </div>
                 <DeleteIcon
                   onClick={() => data.removeItem(item.id)}

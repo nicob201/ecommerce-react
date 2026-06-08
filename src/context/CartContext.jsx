@@ -16,6 +16,29 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
+  const increaseQuantity = (itemId) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === itemId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  };
+
+  const decreaseQuantity = (itemId) => {
+    setCart((prev) =>
+      prev.reduce((acc, item) => {
+        if (item.id !== itemId) {
+          acc.push(item);
+        } else if (item.quantity > 1) {
+          acc.push({ ...item, quantity: item.quantity - 1 });
+        }
+        return acc;
+      }, [])
+    );
+  };
+
   const removeItem = (itemId) => {
     const updatedCart = cart.filter((item) => item.id !== itemId);
     setCart(updatedCart);
@@ -36,6 +59,8 @@ export const CartContextProvider = ({ children }) => {
   let data = {
     cart,
     addToCart,
+    increaseQuantity,
+    decreaseQuantity,
     removeItem,
     clearCart,
     getTotalQuantity,
